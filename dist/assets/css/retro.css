@@ -1006,3 +1006,148 @@ html {
   font-weight: 500;
   border: 1px solid var(--primary-gold);
 }
+
+/* Terminal Command Line Interface */
+.terminal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 15, 10, 0.95);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.terminal-overlay.active {
+  display: flex;
+}
+
+.terminal-content {
+  background: var(--bg-darker);
+  border: 3px solid var(--primary-gold);
+  border-radius: 0;
+  box-shadow: 
+    0 0 20px var(--primary-gold),
+    inset 0 0 20px rgba(212, 165, 116, 0.1);
+  width: 80vw;
+  max-width: 800px;
+  height: 60vh;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.terminal-header {
+  background: var(--bg-dark);
+  border-bottom: 2px solid var(--primary-gold);
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terminal-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: var(--primary-gold);
+}
+
+.terminal-close {
+  background: none;
+  border: 1px solid var(--primary-gold);
+  color: var(--primary-gold);
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terminal-close:hover {
+  background: var(--primary-gold);
+  color: var(--bg-darker);
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.terminal-output-line {
+  margin-bottom: 0.25rem;
+}
+
+.terminal-output-command {
+  color: var(--neon-amber);
+}
+
+.terminal-output-error {
+  color: var(--warning-red);
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+}
+
+.terminal-prompt {
+  color: var(--primary-gold);
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-lighter);
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  caret-color: var(--neon-amber);
+}
+
+.terminal-input::placeholder {
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .terminal-content {
+    width: 95vw;
+    height: 70vh;
+  }
+  
+  .terminal-title {
+    font-size: 8px;
+  }
+  
+  .terminal-output,
+  .terminal-input-line {
+    font-size: 14px;
+  }
+}
