@@ -120,12 +120,15 @@ a:focus {
     0 0 10px var(--primary-gold),
     inset 0 0 20px rgba(212, 165, 116, 0.1);
   position: relative;
+  margin-top: 20px;
+  margin-bottom: 2rem;
+  padding: 1rem;
 }
 
 .terminal-window::before {
   content: "● ● ●";
   position: absolute;
-  top: -25px;
+  top: -15px;
   left: 10px;
   color: var(--primary-gold);
   font-family: 'Press Start 2P', monospace;
@@ -832,4 +835,35 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--neon-amber);
+}
+
+/* Equal height cards for index page */
+.equal-height-cards {
+  align-items: stretch;
+}
+
+.equal-height-cards .column {
+  display: flex;
+}
+
+.equal-height-cards .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.equal-height-cards .card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.equal-height-cards .card-content p {
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.equal-height-cards .button {
+  margin-top: auto;
 }
