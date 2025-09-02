@@ -328,7 +328,7 @@ class StaticSiteGenerator {
 
     generateClubStats(club) {
         return `
-<div class="columns is-multiline">
+<div class="columns is-multiline equal-height-stats">
     <div class="column is-3">
         <div class="box has-text-centered">
             <p class="title is-3 has-text-primary">${club.total_events}</p>
@@ -337,7 +337,7 @@ class StaticSiteGenerator {
     </div>
     <div class="column is-3">
         <div class="box has-text-centered">
-            <p class="title is-3 has-text-success">${club.total_points.toLocaleString()}</p>
+            <p class="title is-3 has-text-warning">${club.total_points.toLocaleString()}</p>
             <p class="subtitle is-6">Total Points</p>
         </div>
     </div>
@@ -349,7 +349,7 @@ class StaticSiteGenerator {
     </div>
     <div class="column is-3">
         <div class="box has-text-centered">
-            <p class="title is-3 has-text-info">${club.members_active}</p>
+            <p class="title is-3 has-text-primary">${club.members_active}</p>
             <p class="subtitle is-6">Active Members</p>
         </div>
     </div>
@@ -367,7 +367,7 @@ class StaticSiteGenerator {
                     <td><strong>${event.name}</strong></td>
                     <td>${event.date}</td>
                     <td><span class="tag is-primary">#${event.team_ranking} / ${event.total_teams}</span></td>
-                    <td><span class="has-text-success">${event.points_earned.toLocaleString()}</span></td>
+                    <td><span class="has-text-warning">${event.points_earned.toLocaleString()}</span></td>
                     <td><span class="tag is-light">${event.category}</span></td>
                 </tr>
             `;
@@ -407,7 +407,7 @@ class StaticSiteGenerator {
                                 <p><strong>Events:</strong> ${member.stats.events_participated}</p>
                                 <p><strong>Challenges:</strong> ${member.stats.challenges_solved}</p>
                                 <p><strong>Specialty:</strong> 
-                                    ${member.specialties.map(spec => `<span class="tag is-primary is-small">${spec}</span>`).join(' ')}
+                                    ${member.specialties.map(spec => `<span class="tag is-warning is-small">${spec}</span>`).join(' ')}
                                 </p>
                             </div>
                         </div>
@@ -454,7 +454,7 @@ class StaticSiteGenerator {
                 <div class="box">
                     <article class="media">
                         <div class="media-left">
-                            <span class="icon is-large has-text-success">
+                            <span class="icon is-large has-text-warning">
                                 <i class="fas fa-trophy fa-2x"></i>
                             </span>
                         </div>
