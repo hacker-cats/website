@@ -4,7 +4,7 @@ Ready to dive into the world of programming and innovation? We'd love to have yo
 
 ## How to Join
 
-### 1. 📱 Join Our Discord Server
+### 1. Join Our Discord Server
 Our Discord is the heart of our community where we:
 - Share coding tips and resources
 - Organize study groups and pair programming sessions
@@ -13,7 +13,7 @@ Our Discord is the heart of our community where we:
 
 **[Join Discord](https://discord.gg/hackercats)** *(Replace with actual invite link)*
 
-### 2. 🐙 Follow Us on GitHub
+### 2. Follow Us on GitHub
 Stay updated with our projects and contribute to our codebase:
 - Check out our open source projects
 - Contribute to ongoing initiatives
@@ -21,7 +21,7 @@ Stay updated with our projects and contribute to our codebase:
 
 **[GitHub Organization](https://github.com/hackercats)** *(Replace with actual organization)*
 
-### 3. 📅 Attend Our Events
+### 3. Attend Our Events
 Jump right in by attending our weekly events:
 - **Weekly Meetings**: Wednesdays at 6:00 PM
 - **Hackathons**: Monthly weekend events
@@ -43,11 +43,11 @@ Jump right in by attending our weekly events:
 
 ## Membership Benefits
 
-- 🎓 **Skill Development**: Learn new programming languages and frameworks
-- 🤝 **Networking**: Connect with students and industry professionals
-- 🏆 **Competitions**: Participate in hackathons and coding contests
-- 💼 **Career Support**: Resume reviews, interview prep, internship opportunities
-- 🎉 **Community**: Make lifelong friendships with fellow tech enthusiasts
+- **Skill Development**: Learn new programming languages and frameworks
+- **Networking**: Connect with students and industry professionals
+- **Competitions**: Participate in hackathons and coding contests
+- **Career Support**: Resume reviews, interview prep, internship opportunities
+- **Community**: Make lifelong friendships with fellow tech enthusiasts
 
 ## Getting Started Checklist
 
@@ -66,4 +66,4 @@ Have questions? Reach out to us:
 - **Email**: hackercats@[your-college].edu
 - **Meeting Location**: Computer Science Building, Room 101
 
-We can't wait to meet you and see what amazing things we'll build together! 🚀
+We can't wait to meet you and see what amazing things we'll build together!

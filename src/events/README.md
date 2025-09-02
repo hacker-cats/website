@@ -4,14 +4,14 @@ Stay updated with our exciting lineup of events and activities throughout the se
 
 ## Upcoming Events
 
-### 🚀 Fall Kickoff Hackathon
+### Fall Kickoff Hackathon
 **Date**: September 15-16, 2024  
 **Location**: Computer Science Building, Lab 101  
 **Theme**: "Tech for Good" - Build solutions that make a positive impact
 
 Join us for our biggest event of the semester! Form teams, code for 24 hours, and compete for amazing prizes.
 
-### 💡 JavaScript Workshop Series
+### JavaScript Workshop Series
 **Dates**: Every Wednesday, 6:00 PM  
 **Location**: Engineering Building, Room 205  
 
@@ -21,7 +21,7 @@ Master modern JavaScript from basics to advanced concepts:
 - Week 3: React Fundamentals
 - Week 4: Node.js and API Development
 
-### 🎤 Tech Talk: "AI in Industry"
+### Tech Talk: "AI in Industry"
 **Date**: October 5, 2024  
 **Speaker**: Sarah Johnson, ML Engineer at TechCorp  
 **Location**: Main Auditorium

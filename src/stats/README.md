@@ -2,11 +2,11 @@
 
 Welcome to our Capture The Flag (CTF) statistics dashboard! Here you can track our team's performance, individual member achievements, and overall club progress in cybersecurity competitions.
 
-## 🏆 Club Overview
+## Club Overview
 
 Our team has been competing in CTF events since 2023, building expertise across multiple cybersecurity domains including web exploitation, cryptography, binary exploitation, reverse engineering, and digital forensics.
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 ### Team Statistics
 {{CLUB_STATS}}
@@ -14,23 +14,23 @@ Our team has been competing in CTF events since 2023, building expertise across 
 ### Recent Events
 {{EVENT_STATS}}
 
-## 👥 Member Leaderboard
+## Member Leaderboard
 
 Our active members and their contributions to the team:
 
 {{MEMBER_STATS}}
 
-## 🎯 Challenge Categories
+## Challenge Categories
 
 Performance breakdown by CTF challenge categories:
 
 {{CATEGORY_STATS}}
 
-## 🏅 Recent Achievements
+## Recent Achievements
 
 {{ACHIEVEMENTS}}
 
-## 🎯 Current Goals
+## Current Goals
 
 {{GOALS}}
 

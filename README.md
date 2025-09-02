@@ -1,4 +1,4 @@
-# 🐱‍💻 Hackercats Club Website
+# Hackercats Club Website
 
 > **Live at**: [hackercats.club](https://hackercats.club)
 
@@ -6,7 +6,7 @@ A 90s-inspired retro hacker aesthetic website for the Hackercats college CTF tea
 
 ![Hackercats Logo](dist/assets/images/logo.png)
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Edit Content**: Modify the README.md files in the `src/` directories:
    - `src/about/README.md` - Club information
@@ -55,15 +55,15 @@ website/
 └── README.md              # This file
 ```
 
-## ✨ Features
+## Features
 
-- **📝 Markdown-based**: Edit content using simple markdown files
-- **🎨 Bulma CSS**: Beautiful, responsive design out of the box
-- **⚡ Static**: Fast loading, easy to host anywhere
-- **🔧 Customizable**: Easy to modify styles and layout
-- **📱 Mobile-friendly**: Responsive design that works on all devices
+- **Markdown-based**: Edit content using simple markdown files
+- **Bulma CSS**: Beautiful, responsive design out of the box
+- **Static**: Fast loading, easy to host anywhere
+- **Customizable**: Easy to modify styles and layout
+- **Mobile-friendly**: Responsive design that works on all devices
 
-## 🎨 Customization
+## Customization
 
 ### Styling
 The site uses Bulma CSS framework. You can:
@@ -81,13 +81,13 @@ The site uses Bulma CSS framework. You can:
 - The generator injects content into designated sections
 - Navigation and hero section can be customized directly in the HTML
 
-## 📦 Available Scripts
+## Available Scripts
 
 - `npm run build` - Generate static site from markdown
 - `npm run serve` - Start local development server
 - `npm run dev` - Build and serve in one command
 
-## 🚀 Automated Deployment
+## Automated Deployment
 
 **GitHub Pages + Custom Domain**: Fully automated!
 
@@ -111,7 +111,7 @@ Simply upload the contents of the `dist/` directory to your hosting provider.
 4. Set custom domain to `hackercats.club`
 5. Configure DNS: Add CNAME record pointing to `username.github.io`
 
-## 🤝 Contributing
+## Contributing
 
 1. Edit the relevant README.md files in `src/`
 2. Run `npm run build` to regenerate the site
