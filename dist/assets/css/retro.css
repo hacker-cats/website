@@ -693,6 +693,37 @@ html {
     width: 100% !important;
     margin-bottom: 1rem;
   }
+  
+  /* Reduce border clutter on mobile */
+  .box {
+    border-width: 1px !important; /* Reduce from 2px */
+  }
+  
+  .card {
+    border-width: 1px !important; /* Reduce from 2px */
+  }
+  
+  .button {
+    border-width: 1px !important; /* Reduce from 2px */
+  }
+  
+  .table {
+    border-width: 1px !important;
+  }
+  
+  .table td, .table th {
+    border-width: 1px !important;
+    padding: 0.5rem !important; /* Reduce padding too */
+  }
+  
+  /* Remove decorative borders from content elements */
+  .content h1, .content h2, .content h3 {
+    border-width: 1px !important; /* Reduce header borders */
+  }
+  
+  .notification {
+    border-width: 1px !important;
+  }
 }
 
 /* Small mobile optimizations (up to 480px) */
@@ -722,6 +753,19 @@ html {
   .button {
     font-size: 8px !important;
     padding: 10px 15px !important;
+    border-width: 1px !important; /* Even thinner on small screens */
+  }
+  
+  /* Minimal borders for very small screens */
+  .box, .card, .notification {
+    border-width: 1px !important;
+    padding: 0.75rem !important; /* Reduce padding further */
+  }
+  
+  /* Simplify table styling */
+  .table td, .table th {
+    padding: 0.25rem !important;
+    border-bottom-width: 1px !important;
   }
 }
 
