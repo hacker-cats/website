@@ -1,0 +1,15 @@
+{
+  "name": "hackercats-website",
+  "version": "1.0.0",
+  "description": "Static website for Hackercats college club",
+  "main": "generate.js",
+  "scripts": {
+    "build": "node generate.js",
+    "serve": "python3 -m http.server 8000 --directory dist",
+    "dev": "npm run build && npm run serve",
+    "clean": "rm -rf dist/*/index.html dist/index.html"
+  },
+  "keywords": ["static-site", "college-club", "bulma", "markdown"],
+  "author": "Hackercats",
+  "license": "MIT"
+}

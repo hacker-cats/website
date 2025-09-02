@@ -1,0 +1,151 @@
+---
+# Hackercats CTF Statistics
+club:
+  name: "Hackercats"
+  founded: "2023"
+  total_events: 15
+  total_points: 28450
+  best_ranking: 3
+  members_active: 12
+
+# Individual CTF Events
+events:
+  - name: "CyberDefenders National CTF 2024"
+    date: "2024-08-15"
+    category: "National"
+    team_ranking: 5
+    total_teams: 150
+    points_earned: 3200
+    duration_hours: 48
+    challenges_solved: 12
+    members_participated: 8
+    
+  - name: "PicoCTF 2024"
+    date: "2024-03-20"
+    category: "Educational"
+    team_ranking: 12
+    total_teams: 2500
+    points_earned: 4850
+    duration_hours: 168
+    challenges_solved: 25
+    members_participated: 10
+    
+  - name: "DEF CON CTF Quals 2024"
+    date: "2024-05-10"
+    category: "Elite"
+    team_ranking: 45
+    total_teams: 400
+    points_earned: 1200
+    duration_hours: 48
+    challenges_solved: 3
+    members_participated: 6
+
+# Member Statistics
+members:
+  - name: "Dillon Shaffer"
+    username: "Molkars"
+    year: "Senior"
+    major: "Computer Science"
+    specialties: ["pwn", "web", "reverse"]
+    stats:
+      events_participated: 15
+      total_points: 8400
+      best_individual_rank: 5
+      challenges_solved: 78
+      favorite_category: "pwn"
+      
+  - name: "Mike Kadoshnikov"
+    username: "myk"
+    year: "Junior"
+    major: "Cybersecurity"
+    specialties: ["pwn", "osint", "reverse"]
+    stats:
+      events_participated: 12
+      total_points: 6200
+      best_individual_rank: 12
+      challenges_solved: 54
+      favorite_category: "osint"
+      
+  - name: "Matt Revelle"
+    username: "drone"
+    year: "Senior"
+    major: "Computer Engineering"
+    specialties: ["web", "pwn", "crypto", "reverse", "forensics", "osint", "misc"]
+    stats:
+      events_participated: 18
+      total_points: 7200
+      best_individual_rank: 8
+      challenges_solved: 65
+      favorite_category: "misc"
+
+# Category Statistics
+categories:
+  - name: "Web Exploitation"
+    challenges_solved: 45
+    total_points: 8900
+    difficulty_distribution:
+      easy: 18
+      medium: 20
+      hard: 7
+      
+  - name: "Cryptography"
+    challenges_solved: 32
+    total_points: 6400
+    difficulty_distribution:
+      easy: 12
+      medium: 15
+      hard: 5
+      
+  - name: "Binary Exploitation (Pwn)"
+    challenges_solved: 28
+    total_points: 7200
+    difficulty_distribution:
+      easy: 8
+      medium: 12
+      hard: 8
+      
+  - name: "Reverse Engineering"
+    challenges_solved: 25
+    total_points: 5800
+    difficulty_distribution:
+      easy: 6
+      medium: 14
+      hard: 5
+      
+  - name: "Forensics"
+    challenges_solved: 22
+    total_points: 4200
+    difficulty_distribution:
+      easy: 10
+      medium: 8
+      hard: 4
+
+# Recent Achievements
+achievements:
+  - title: "Top 10 National Finish"
+    description: "Achieved 8th place out of 400 teams in National CTF Championship"
+    date: "2024-06-20"
+    members: ["Dillon Shaffer", "Mike Kadoshnikov", "Matt Revelle"]
+    
+  - title: "Regional CTF Victory"
+    description: "First place finish at Regional Cybersecurity Competition"
+    date: "2024-04-15"
+    members: ["Dillon Shaffer", "Mike Kadoshnikov"]
+    
+  - title: "Web Exploit Specialist"
+    description: "Molkars recognized for exceptional web exploitation skills"
+    date: "2024-05-01"
+    members: ["Dillon Shaffer"]
+
+# Goals and Metrics
+goals:
+  current_semester:
+    - "Participate in 8+ CTF events"
+    - "Achieve top 15 ranking in at least 3 major CTFs"
+    - "Recruit 5 new active members"
+    - "Host our first internal CTF event"
+  
+  annual:
+    - "Break into top 10 nationally ranked university CTF teams"
+    - "Establish partnerships with cybersecurity companies"
+    - "Create beginner-friendly CTF training program"

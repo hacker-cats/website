@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - Hackercats</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon-64x64.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/android-chrome-192x192.png">
+    <meta name="theme-color" content="#d4a574">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/retro.css">
+</head>
+<body>
+    <!-- Skip link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/" aria-label="Hackercats home">
+                <strong>Hackercats</strong>
+            </a>
+            
+            <!-- Mobile hamburger menu -->
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu" tabindex="0">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item {{ABOUT_ACTIVE}}" href="/about" aria-label="About us">About</a>
+                <a class="navbar-item {{EVENTS_ACTIVE}}" href="/events" aria-label="Events and activities">Events</a>
+                <a class="navbar-item {{PROJECTS_ACTIVE}}" href="/projects" aria-label="Member projects">Projects</a>
+                <a class="navbar-item {{STATS_ACTIVE}}" href="/stats" aria-label="CTF statistics">CTF Stats</a>
+                <a class="navbar-item {{JOIN_ACTIVE}}" href="/join" aria-label="Join our club">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    {{HERO_SECTION}}
+
+    <!-- Content Container -->
+    <div class="content-container">
+        <div class="columns is-centered">
+            <div class="column is-10-desktop is-12-tablet is-12-mobile">
+                <main id="main-content" role="main">
+                    <section class="section">
+                        <div class="content reading-optimized">
+                            {{CONTENT}}
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>HACKERCATS.EXE</strong> - Compiled with <i class="fas fa-heart has-text-danger"></i> and 1337 sk1llz<br>
+                <small>> System Status: ONLINE | Matrix Connection: ACTIVE | Firewall: BREACHED</small>
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Mobile Navigation Script -->
+    <script src="/assets/js/mobile-nav.js"></script>
+</body>
+</html>
