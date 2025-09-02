@@ -8,6 +8,8 @@ class HackercatsTerminal {
         this.currentPath = '/';
         this.commandHistory = [];
         this.historyIndex = -1;
+        this.vimMode = false;
+        this.scrollPosition = 0;
         
         this.pages = {
             '/': { title: 'Home', url: '/' },
@@ -34,14 +36,24 @@ class HackercatsTerminal {
     init() {
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
-            // Ctrl + ` to open terminal
+            // Ctrl + ` to toggle terminal
             if (e.ctrlKey && e.key === '`') {
                 e.preventDefault();
-                this.show();
+                if (this.terminal.classList.contains('active')) {
+                    this.hide();
+                } else {
+                    this.show();
+                }
             }
-            // Escape to close terminal
+            // Escape to enter vim mode
             else if (e.key === 'Escape' && this.terminal.classList.contains('active')) {
-                this.hide();
+                if (!this.vimMode) {
+                    this.enterVimMode();
+                }
+            }
+            // Vim mode navigation
+            else if (this.vimMode && this.terminal.classList.contains('active')) {
+                this.handleVimKeydown(e);
             }
         });
         
@@ -94,7 +106,11 @@ class HackercatsTerminal {
     updatePrompt() {
         const prompt = document.querySelector('.terminal-prompt');
         const pageName = this.currentPath === '/' ? 'home' : this.currentPath.substring(1);
-        prompt.textContent = `hackercats@${pageName}:~$ `;
+        if (this.vimMode) {
+            prompt.textContent = `-- VIM -- `;
+        } else {
+            prompt.textContent = `hackercats@${pageName}:~$ `;
+        }
     }
     
     processCommand() {
@@ -147,25 +163,42 @@ class HackercatsTerminal {
     }
     
     showHelp() {
-        this.addOutput('Available commands:', 'system');
+        this.addOutput('HACKERCATS TERMINAL HELP', 'header');
+        this.addOutput('', 'system');
+        this.addOutput('', 'system');
+        
+        this.addOutput('COMMANDS', 'section');
         this.addOutput('', 'system');
         Object.entries(this.commands).forEach(([cmd, desc]) => {
-            this.addOutput(`  ${cmd.padEnd(15)} - ${desc}`, 'system');
+            this.addOutput(`${cmd.padEnd(15)} - ${desc}`, 'command-item');
         });
         this.addOutput('', 'system');
-        this.addOutput('Navigation shortcuts:', 'system');
-        this.addOutput('  Ctrl + `        - Open/close terminal', 'system');
-        this.addOutput('  Escape          - Close terminal', 'system');
-        this.addOutput('  Up/Down arrows  - Command history', 'system');
+        this.addOutput('', 'system');
+        
+        this.addOutput('KEYBOARD SHORTCUTS', 'section');
+        this.addOutput('', 'system');
+        this.addOutput('Ctrl + `        - Open/close terminal', 'command-item');
+        this.addOutput('Escape          - Close terminal', 'command-item');
+        this.addOutput('Up/Down arrows  - Navigate command history', 'command-item');
+        this.addOutput('Enter           - Execute command', 'command-item');
+        this.addOutput('', 'system');
+        this.addOutput('', 'system');
+        
+        this.addOutput('Type "ls" to see available pages', 'hint');
+        this.addOutput('Use "cd <page>" to navigate (e.g., cd /about)', 'hint');
     }
     
     listPages() {
-        this.addOutput('Available pages:', 'system');
+        this.addOutput('AVAILABLE PAGES', 'section');
         this.addOutput('', 'system');
         Object.entries(this.pages).forEach(([path, info]) => {
-            const current = path === this.currentPath ? ' (current)' : '';
-            this.addOutput(`  ${path.padEnd(12)} - ${info.title}${current}`, 'system');
+            const current = path === this.currentPath;
+            const indicator = current ? '●' : ' ';
+            const status = current ? ' (current)' : '';
+            this.addOutput(`${indicator} ${path.padEnd(12)} - ${info.title}${status}`, current ? 'current-page' : 'command-item');
         });
+        this.addOutput('', 'system');
+        this.addOutput('Use "cd <page>" to navigate to a page', 'hint');
     }
     
     changeDirectory(path) {
@@ -235,6 +268,100 @@ class HackercatsTerminal {
     
     scrollToBottom() {
         this.output.scrollTop = this.output.scrollHeight;
+    }
+    
+    enterVimMode() {
+        this.vimMode = true;
+        this.input.blur();
+        this.terminal.classList.add('vim-mode');
+        this.updatePrompt();
+        
+        // Show vim mode indicator
+        this.addOutput('-- VIM MODE --', 'vim-indicator');
+        this.addOutput('j/k: scroll • i: insert mode • q: quit • ?: help', 'vim-help');
+    }
+    
+    exitVimMode() {
+        this.vimMode = false;
+        this.terminal.classList.remove('vim-mode');
+        this.input.focus();
+        this.updatePrompt();
+    }
+    
+    handleVimKeydown(e) {
+        e.preventDefault();
+        
+        switch (e.key.toLowerCase()) {
+            case 'j':
+                this.scrollDown();
+                break;
+            case 'k':
+                this.scrollUp();
+                break;
+            case 'g':
+                if (e.shiftKey) {
+                    this.scrollToBottom();
+                } else {
+                    // Handle gg (go to top) - would need double-tap logic
+                    this.scrollToTop();
+                }
+                break;
+            case 'd':
+                if (e.ctrlKey) {
+                    this.scrollDown(5);
+                }
+                break;
+            case 'u':
+                if (e.ctrlKey) {
+                    this.scrollUp(5);
+                }
+                break;
+            case 'i':
+                this.exitVimMode();
+                break;
+            case 'q':
+                this.hide();
+                break;
+            case '?':
+                this.showVimHelp();
+                break;
+            case 'arrowup':
+                this.scrollUp();
+                break;
+            case 'arrowdown':
+                this.scrollDown();
+                break;
+        }
+    }
+    
+    scrollUp(lines = 1) {
+        const lineHeight = 22; // Approximate line height
+        this.output.scrollTop = Math.max(0, this.output.scrollTop - (lineHeight * lines));
+    }
+    
+    scrollDown(lines = 1) {
+        const lineHeight = 22;
+        const maxScroll = this.output.scrollHeight - this.output.clientHeight;
+        this.output.scrollTop = Math.min(maxScroll, this.output.scrollTop + (lineHeight * lines));
+    }
+    
+    scrollToTop() {
+        this.output.scrollTop = 0;
+    }
+    
+    showVimHelp() {
+        this.addOutput('VIM MODE COMMANDS', 'section');
+        this.addOutput('', 'system');
+        this.addOutput('j / ↓        - Scroll down', 'command-item');
+        this.addOutput('k / ↑        - Scroll up', 'command-item');
+        this.addOutput('Ctrl+d       - Scroll down 5 lines', 'command-item');
+        this.addOutput('Ctrl+u       - Scroll up 5 lines', 'command-item');
+        this.addOutput('g            - Go to top', 'command-item');
+        this.addOutput('G            - Go to bottom', 'command-item');
+        this.addOutput('i            - Enter insert mode', 'command-item');
+        this.addOutput('q            - Quit terminal', 'command-item');
+        this.addOutput('?            - Show this help', 'command-item');
+        this.addOutput('', 'system');
     }
 }
 

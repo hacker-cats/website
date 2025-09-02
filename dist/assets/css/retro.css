@@ -1106,6 +1106,77 @@ html {
   color: var(--warning-red);
 }
 
+.terminal-output-header {
+  color: var(--neon-amber);
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+  background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.1), transparent);
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.terminal-output-section {
+  color: var(--primary-gold);
+  font-weight: bold;
+  text-transform: uppercase;
+  background: rgba(139, 111, 71, 0.2);
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem 0;
+  border-left: 3px solid var(--primary-gold);
+}
+
+.terminal-output-command-item {
+  color: var(--text-lighter);
+  background: rgba(212, 165, 116, 0.05);
+  padding: 0.1rem 1rem;
+  margin: 0.1rem 0;
+}
+
+.terminal-output-current-page {
+  color: var(--neon-amber);
+  background: rgba(244, 200, 66, 0.15);
+  padding: 0.1rem 1rem;
+  margin: 0.1rem 0;
+  font-weight: bold;
+}
+
+.terminal-output-hint {
+  color: var(--terminal-gold);
+  font-style: italic;
+  opacity: 0.8;
+  padding-left: 1rem;
+}
+
+.terminal-output-vim-indicator {
+  color: var(--neon-amber);
+  font-weight: bold;
+  text-align: center;
+  background: rgba(244, 200, 66, 0.2);
+  padding: 0.25rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--neon-amber);
+}
+
+.terminal-output-vim-help {
+  color: var(--terminal-gold);
+  font-style: italic;
+  text-align: center;
+  opacity: 0.9;
+  padding: 0.25rem;
+}
+
+/* Vim mode styling */
+.terminal-overlay.vim-mode .terminal-input {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.terminal-overlay.vim-mode .terminal-prompt {
+  color: var(--neon-amber);
+  font-weight: bold;
+}
+
 .terminal-input-line {
   display: flex;
   align-items: center;
