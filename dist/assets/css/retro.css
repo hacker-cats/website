@@ -898,6 +898,26 @@ html {
   margin-top: auto;
 }
 
+/* Terminal search and visual mode styles */
+.terminal-output-search-prompt {
+  color: var(--neon-amber);
+  font-weight: bold;
+}
+
+.search-highlight {
+  background-color: var(--primary-gold) !important;
+  color: var(--bg-darker) !important;
+  font-weight: bold;
+  animation: search-pulse 1s ease-in-out;
+}
+
+@keyframes search-pulse {
+  0% { background-color: var(--neon-amber); }
+  50% { background-color: var(--primary-gold); }
+  100% { background-color: var(--primary-gold); }
+}
+
+
 /* Equal height stats boxes */
 .equal-height-stats {
   align-items: stretch;
@@ -1175,6 +1195,13 @@ html {
 .terminal-overlay.vim-mode .terminal-prompt {
   color: var(--neon-amber);
   font-weight: bold;
+}
+
+.terminal-output-matrix {
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  letter-spacing: 2px;
+  opacity: 0.8;
 }
 
 .terminal-input-line {
