@@ -383,32 +383,41 @@ class StaticSiteGenerator {
         // Sort by total points
         const sortedMembers = members.sort((a, b) => b.stats.total_points - a.stats.total_points);
         
-        let html = '<div class="columns is-multiline">';
+        let html = '<div class="columns is-multiline member-grid">';
         
         sortedMembers.forEach((member, index) => {
             const rankClass = index === 0 ? 'is-warning' : index === 1 ? 'is-light' : index === 2 ? 'has-background-warning-light' : 'is-white';
             const rankIcon = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
             
             html += `
-                <div class="column is-6">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-left">
-                                    <span class="tag ${rankClass} is-large">${rankIcon}</span>
+                <div class="column is-6-desktop is-6-tablet is-12-mobile">
+                    <div class="card member-card">
+                        <div class="card-content member-content">
+                            <div class="member-header">
+                                <div class="member-rank">
+                                    <span class="tag ${rankClass} is-medium">${rankIcon}</span>
                                 </div>
-                                <div class="media-content">
-                                    <p class="title is-5">${member.name}</p>
-                                    <p class="subtitle is-6">${member.year} - ${member.major}</p>
+                                <div class="member-info">
+                                    <div class="member-name">${member.name}</div>
+                                    <div class="member-details">${member.year} - ${member.major}</div>
                                 </div>
                             </div>
-                            <div class="content">
-                                <p><strong>Points:</strong> ${member.stats.total_points.toLocaleString()}</p>
-                                <p><strong>Events:</strong> ${member.stats.events_participated}</p>
-                                <p><strong>Challenges:</strong> ${member.stats.challenges_solved}</p>
-                                <p><strong>Specialty:</strong> 
-                                    ${member.specialties.map(spec => `<span class="tag is-warning is-small">${spec}</span>`).join(' ')}
-                                </p>
+                            <div class="member-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Points:</span>
+                                    <span class="stat-value">${member.stats.total_points.toLocaleString()}</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Events:</span>
+                                    <span class="stat-value">${member.stats.events_participated}</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Challenges:</span>
+                                    <span class="stat-value">${member.stats.challenges_solved}</span>
+                                </div>
+                            </div>
+                            <div class="member-specialties">
+                                ${member.specialties.map(spec => `<span class="specialty-tag">${spec}</span>`).join('')}
                             </div>
                         </div>
                     </div>
