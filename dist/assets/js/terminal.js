@@ -93,9 +93,17 @@ class HackercatsTerminal {
                     this.handleEmacsKeydown(e);
                 }
             }
-            // Escape to enter vim mode (unless coming from history search)
+            // Escape to exit any active mode or enter vim mode
             else if (e.key === 'Escape' && this.terminal.classList.contains('active')) {
-                if (!this.vimMode && !this.emacsMode && !this.historySearchMode) {
+                e.preventDefault();
+                if (this.historySearchMode) {
+                    // Exit history search handled by handleHistorySearchKeydown
+                    return;
+                } else if (this.vimMode) {
+                    this.exitVimMode();
+                } else if (this.emacsMode) {
+                    this.exitEmacsMode();
+                } else {
                     this.enterVimMode();
                 }
             }
@@ -483,9 +491,6 @@ class HackercatsTerminal {
                 } else {
                     this.scrollDown();
                 }
-                break;
-            case 'escape':
-                this.exitVimMode();
                 break;
         }
     }
