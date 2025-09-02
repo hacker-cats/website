@@ -9,6 +9,7 @@ class HackercatsTerminal {
         this.commandHistory = this.loadCommandHistory();
         this.historyIndex = -1;
         this.vimMode = false;
+        this.emacsMode = false;
         this.scrollPosition = 0;
         this.searchMode = false;
         this.searchQuery = '';
@@ -54,6 +55,8 @@ class HackercatsTerminal {
             'history': 'Show command history',
             'history -c': 'Clear command history',
             'history -n': 'Show last n commands',
+            'set -o emacs': 'Enable emacs mode',
+            'set -o vi': 'Enable vi mode',
             'exit': 'Close terminal'
         };
         
@@ -82,15 +85,27 @@ class HackercatsTerminal {
                 e.preventDefault();
                 this.clearOutput();
             }
+            // Prevent browser shortcuts for emacs mode keys when terminal is active
+            else if (this.terminal.classList.contains('active') && e.ctrlKey && ['n', 'p', 'b', 'f', 'a', 'e', 's', 'y', 'g', 'h', 'q'].includes(e.key.toLowerCase())) {
+                e.preventDefault();
+                // Only handle in emacs mode, but prevent browser actions regardless
+                if (this.emacsMode) {
+                    this.handleEmacsKeydown(e);
+                }
+            }
             // Escape to enter vim mode (unless coming from history search)
             else if (e.key === 'Escape' && this.terminal.classList.contains('active')) {
-                if (!this.vimMode && !this.historySearchMode) {
+                if (!this.vimMode && !this.emacsMode && !this.historySearchMode) {
                     this.enterVimMode();
                 }
             }
             // Vim mode navigation
             else if (this.vimMode && this.terminal.classList.contains('active')) {
                 this.handleVimKeydown(e);
+            }
+            // Emacs mode navigation
+            else if (this.emacsMode && this.terminal.classList.contains('active')) {
+                this.handleEmacsKeydown(e);
             }
         });
         
@@ -164,6 +179,8 @@ class HackercatsTerminal {
             prompt.textContent = `-- SEARCH -- `;
         } else if (this.vimMode) {
             prompt.textContent = `-- VIM -- `;
+        } else if (this.emacsMode) {
+            prompt.textContent = `-- EMACS -- `;
         } else {
             prompt.textContent = `hackercats@${pageName}:~$ `;
         }
@@ -242,6 +259,9 @@ class HackercatsTerminal {
                 break;
             case 'history':
                 this.showHistory(args);
+                break;
+            case 'set':
+                this.handleSetCommand(args);
                 break;
             case 'exit':
                 this.hide();
@@ -1106,6 +1126,131 @@ class HackercatsTerminal {
         this.historySearchResults = [];
         this.historySearchIndex = 0;
         this.updatePrompt();
+    }
+    
+    // Set command handling
+    handleSetCommand(args) {
+        if (args.length < 2 || args[0] !== '-o') {
+            this.addOutput('Usage: set -o <option>', 'error');
+            this.addOutput('Available options: emacs, vi', 'system');
+            return;
+        }
+        
+        const option = args[1];
+        if (option === 'emacs') {
+            this.exitVimMode();
+            this.enterEmacsMode();
+        } else if (option === 'vi') {
+            this.exitEmacsMode();
+            this.enterVimMode();
+        } else {
+            this.addOutput(`set: invalid option '${option}'`, 'error');
+            this.addOutput('Available options: emacs, vi', 'system');
+        }
+    }
+    
+    // Emacs mode functionality
+    enterEmacsMode() {
+        this.emacsMode = true;
+        this.input.blur();
+        this.terminal.classList.add('emacs-mode');
+        this.updatePrompt();
+        
+        // Show compact emacs mode indicator
+        this.addOutput('-- EMACS -- (C-p/C-n:scroll • C-g:exit • C-h:help)', 'vim-indicator');
+    }
+    
+    exitEmacsMode() {
+        this.emacsMode = false;
+        this.terminal.classList.remove('emacs-mode');
+        this.input.focus();
+        this.updatePrompt();
+    }
+    
+    handleEmacsKeydown(e) {
+        e.preventDefault();
+        
+        if (e.ctrlKey) {
+            switch (e.key.toLowerCase()) {
+                case 'p':
+                    this.scrollUp();
+                    break;
+                case 'n':
+                    this.scrollDown();
+                    break;
+                case 'b':
+                    this.scrollUp(5);
+                    break;
+                case 'f':
+                    this.scrollDown(5);
+                    break;
+                case 'a':
+                    this.scrollToTop();
+                    break;
+                case 'e':
+                    this.scrollToBottom();
+                    break;
+                case 's':
+                    this.enterSearchMode();
+                    break;
+                case 'y':
+                    this.yankLine();
+                    break;
+                case 'g':
+                    this.exitEmacsMode();
+                    break;
+                case 'h':
+                    this.showEmacsHelp();
+                    break;
+                case 'q':
+                    this.hide();
+                    break;
+            }
+        } else {
+            switch (e.key.toLowerCase()) {
+                case 'arrowup':
+                    this.scrollUp();
+                    break;
+                case 'arrowdown':
+                    this.scrollDown();
+                    break;
+                case 'pageup':
+                    this.scrollUp(10);
+                    break;
+                case 'pagedown':
+                    this.scrollDown(10);
+                    break;
+                case 'home':
+                    this.scrollToTop();
+                    break;
+                case 'end':
+                    this.scrollToBottom();
+                    break;
+            }
+        }
+    }
+    
+    showEmacsHelp() {
+        this.addOutput('EMACS MODE COMMANDS', 'section');
+        this.addOutput('', 'system');
+        this.addOutput('NAVIGATION', 'section');
+        this.addOutput('C-p / ↑       - Scroll up (previous)', 'command-item');
+        this.addOutput('C-n / ↓       - Scroll down (next)', 'command-item');
+        this.addOutput('C-b           - Scroll up 5 lines (back)', 'command-item');
+        this.addOutput('C-f           - Scroll down 5 lines (forward)', 'command-item');
+        this.addOutput('C-a / Home    - Go to top', 'command-item');
+        this.addOutput('C-e / End     - Go to bottom', 'command-item');
+        this.addOutput('PgUp/PgDn     - Scroll by 10 lines', 'command-item');
+        this.addOutput('', 'system');
+        this.addOutput('SEARCH & EDIT', 'section');
+        this.addOutput('C-s           - Enter search mode', 'command-item');
+        this.addOutput('C-y           - Yank (copy) current line', 'command-item');
+        this.addOutput('', 'system');
+        this.addOutput('MODE CONTROL', 'section');
+        this.addOutput('C-g           - Exit emacs mode', 'command-item');
+        this.addOutput('C-q           - Quit terminal', 'command-item');
+        this.addOutput('C-h           - Show this help', 'command-item');
+        this.addOutput('', 'system');
     }
 }
 
