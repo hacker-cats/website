@@ -18,6 +18,12 @@ class HackercatsTerminal {
         this.historySearchQuery = '';
         this.historySearchResults = [];
         this.historySearchIndex = 0;
+        this.tabCompletionState = {
+            isActive: false,
+            matches: [],
+            currentIndex: 0,
+            originalInput: ''
+        };
         
         this.pages = {
             '/': { title: 'Home', url: '/' },
@@ -71,9 +77,14 @@ class HackercatsTerminal {
                 e.preventDefault();
                 this.enterHistorySearch();
             }
-            // Escape to enter vim mode
+            // Ctrl + L to clear screen
+            else if (e.ctrlKey && e.key === 'l' && this.terminal.classList.contains('active') && !this.vimMode) {
+                e.preventDefault();
+                this.clearOutput();
+            }
+            // Escape to enter vim mode (unless coming from history search)
             else if (e.key === 'Escape' && this.terminal.classList.contains('active')) {
-                if (!this.vimMode) {
+                if (!this.vimMode && !this.historySearchMode) {
                     this.enterVimMode();
                 }
             }
@@ -91,16 +102,22 @@ class HackercatsTerminal {
             }
             
             if (e.key === 'Enter') {
+                this.resetTabCompletion();
                 this.processCommand();
             } else if (e.key === 'ArrowUp') {
                 e.preventDefault();
+                this.resetTabCompletion();
                 this.navigateHistory(-1);
             } else if (e.key === 'ArrowDown') {
                 e.preventDefault();
+                this.resetTabCompletion();
                 this.navigateHistory(1);
             } else if (e.key === 'Tab') {
                 e.preventDefault();
                 this.handleTabCompletion();
+            } else if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete') {
+                // Reset tab completion on any typing or deletion
+                this.resetTabCompletion();
             }
         });
         
@@ -252,6 +269,7 @@ class HackercatsTerminal {
         this.addOutput('', 'system');
         this.addOutput('Ctrl + `        - Open/close terminal', 'command-item');
         this.addOutput('Ctrl + R        - Reverse history search', 'command-item');
+        this.addOutput('Ctrl + L        - Clear screen', 'command-item');
         this.addOutput('Escape          - Enter vim mode / Cancel search', 'command-item');
         this.addOutput('Up/Down arrows  - Navigate command history', 'command-item');
         this.addOutput('Tab             - Auto-complete commands/paths', 'command-item');
@@ -335,14 +353,26 @@ class HackercatsTerminal {
     }
     
     addOutput(text, type = 'output') {
+        const wasAtBottom = this.isScrolledToBottom();
+        
         const line = document.createElement('div');
         line.className = `terminal-output-line terminal-output-${type}`;
         line.textContent = text;
         this.output.appendChild(line);
+        
+        // Auto-scroll to bottom if we were already at the bottom
+        if (wasAtBottom) {
+            this.scrollToBottom();
+        }
     }
     
     scrollToBottom() {
         this.output.scrollTop = this.output.scrollHeight;
+    }
+    
+    isScrolledToBottom() {
+        const threshold = 5; // Allow 5px tolerance for "close enough" to bottom
+        return this.output.scrollTop + this.output.clientHeight >= this.output.scrollHeight - threshold;
     }
     
     enterVimMode() {
@@ -351,9 +381,8 @@ class HackercatsTerminal {
         this.terminal.classList.add('vim-mode');
         this.updatePrompt();
         
-        // Show vim mode indicator
-        this.addOutput('-- VIM MODE --', 'vim-indicator');
-        this.addOutput('j/k: scroll • i: insert mode • q: quit • ?: help', 'vim-help');
+        // Show compact vim mode indicator
+        this.addOutput('-- VIM -- (j/k:scroll • i:insert • ?:help)', 'vim-indicator');
     }
     
     exitVimMode() {
@@ -682,32 +711,84 @@ class HackercatsTerminal {
     // Tab completion functionality
     handleTabCompletion() {
         const currentInput = this.input.value;
+        
+        // If we're already in tab completion mode, cycle through matches
+        if (this.tabCompletionState.isActive && this.tabCompletionState.matches.length > 0) {
+            this.cycleTabCompletion();
+            return;
+        }
+        
+        // Start new tab completion
         const [command, ...args] = currentInput.split(' ');
+        let matches = [];
+        let completionType = '';
         
         if (args.length === 0) {
             // Complete command names
-            const matches = Object.keys(this.commands).filter(cmd => 
+            matches = Object.keys(this.commands).filter(cmd => 
                 cmd.startsWith(command)
             );
+            completionType = 'command';
             
             if (matches.length === 1) {
                 this.input.value = matches[0] + ' ';
-            } else if (matches.length > 1) {
-                this.showCompletions(matches);
+                this.resetTabCompletion();
+                return;
             }
         } else if (command === 'cd') {
             // Complete page paths
             const partial = args.join(' ');
-            const matches = Object.keys(this.pages).filter(path => 
+            matches = Object.keys(this.pages).filter(path => 
                 path.startsWith(partial) || path.substring(1).startsWith(partial)
             );
+            completionType = 'path';
             
             if (matches.length === 1) {
                 this.input.value = `cd ${matches[0]}`;
-            } else if (matches.length > 1) {
-                this.showCompletions(matches.map(path => `cd ${path}`));
+                this.resetTabCompletion();
+                return;
             }
         }
+        
+        if (matches.length > 1) {
+            // Setup tab completion state for cycling
+            this.tabCompletionState = {
+                isActive: true,
+                matches: matches,
+                currentIndex: -1, // Start at -1 so first cycle goes to 0
+                originalInput: currentInput,
+                completionType: completionType
+            };
+            
+            // Show available completions on first tab
+            this.showCompletions(completionType === 'path' ? matches.map(path => `cd ${path}`) : matches);
+        }
+    }
+    
+    cycleTabCompletion() {
+        const state = this.tabCompletionState;
+        state.currentIndex = (state.currentIndex + 1) % state.matches.length;
+        
+        const match = state.matches[state.currentIndex];
+        if (state.completionType === 'command') {
+            this.input.value = match + ' ';
+        } else if (state.completionType === 'path') {
+            this.input.value = `cd ${match}`;
+        }
+        
+        // Position cursor at end
+        setTimeout(() => {
+            this.input.setSelectionRange(this.input.value.length, this.input.value.length);
+        }, 0);
+    }
+    
+    resetTabCompletion() {
+        this.tabCompletionState = {
+            isActive: false,
+            matches: [],
+            currentIndex: 0,
+            originalInput: ''
+        };
     }
     
     showCompletions(matches) {
@@ -956,7 +1037,7 @@ class HackercatsTerminal {
                 this.processCommand();
             }
         } else if (e.key === 'Escape' || (e.ctrlKey && e.key === 'c')) {
-            // Cancel search
+            // Cancel search and stay in insert mode
             this.input.value = '';
             this.exitHistorySearch();
         } else if (e.ctrlKey && e.key === 'r') {
@@ -973,8 +1054,9 @@ class HackercatsTerminal {
             this.performHistorySearch();
         }
         
-        // Prevent default behavior for all keys in history search mode
+        // Prevent default behavior and stop propagation for all keys in history search mode
         e.preventDefault();
+        e.stopPropagation();
     }
     
     performHistorySearch() {
