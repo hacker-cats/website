@@ -28,6 +28,8 @@ class HelpCommand extends TerminalCommand {
     }
     
     execute(args, terminal) {
+        const isMobile = window.innerWidth <= 768;
+        
         terminal.addOutput('HACKERCATS TERMINAL HELP', 'header');
         terminal.addOutput('', 'system');
         
@@ -37,23 +39,31 @@ class HelpCommand extends TerminalCommand {
         // Get all registered commands
         Object.entries(terminal.commandRegistry.commands).forEach(([name, cmd]) => {
             const cmdDisplay = cmd.usage || name;
-            terminal.addOutput(`${cmdDisplay.padEnd(15)} - ${cmd.description}`, 'command-item');
+            if (isMobile) {
+                // Compact mobile format
+                terminal.addOutput(`${cmdDisplay}`, 'command-item');
+                terminal.addOutput(`  ${cmd.description}`, 'system');
+            } else {
+                terminal.addOutput(`${cmdDisplay.padEnd(15)} - ${cmd.description}`, 'command-item');
+            }
         });
         
-        terminal.addOutput('', 'system');
-        terminal.addOutput('KEYBOARD SHORTCUTS', 'section');
-        terminal.addOutput('', 'system');
-        terminal.addOutput('Ctrl + `        - Open/close terminal', 'command-item');
-        terminal.addOutput('Ctrl + R        - Reverse history search', 'command-item');
-        terminal.addOutput('Ctrl + L        - Clear screen', 'command-item');
-        terminal.addOutput('Escape          - Enter vim mode / Cancel search', 'command-item');
-        terminal.addOutput('Up/Down arrows  - Navigate command history', 'command-item');
-        terminal.addOutput('Tab             - Auto-complete commands/paths', 'command-item');
-        terminal.addOutput('Enter           - Execute command', 'command-item');
-        terminal.addOutput('', 'system');
+        if (!isMobile) {
+            terminal.addOutput('', 'system');
+            terminal.addOutput('KEYBOARD SHORTCUTS', 'section');
+            terminal.addOutput('', 'system');
+            terminal.addOutput('Ctrl + `        - Open/close terminal', 'command-item');
+            terminal.addOutput('Ctrl + R        - Reverse history search', 'command-item');
+            terminal.addOutput('Ctrl + L        - Clear screen', 'command-item');
+            terminal.addOutput('Escape          - Enter vim mode / Cancel search', 'command-item');
+            terminal.addOutput('Up/Down arrows  - Navigate command history', 'command-item');
+            terminal.addOutput('Tab             - Auto-complete commands/paths', 'command-item');
+            terminal.addOutput('Enter           - Execute command', 'command-item');
+        }
         
-        terminal.addOutput('Type "ls" to see available files and directories', 'hint');
-        terminal.addOutput('Use "cd <path>" to navigate (e.g., cd about.html)', 'hint');
+        terminal.addOutput('', 'system');
+        terminal.addOutput('Type "ls" to see files', 'hint');
+        terminal.addOutput('Use "cd <file>" to open pages', 'hint');
     }
 }
 
@@ -66,6 +76,7 @@ class LsCommand extends TerminalCommand {
         const fileSystem = terminal.fileSystem;
         const currentDir = fileSystem.getCurrentDirectory();
         const entries = fileSystem.listDirectory(terminal.currentPath);
+        const isMobile = window.innerWidth <= 768;
         
         if (entries.length === 0) {
             terminal.addOutput('Directory is empty', 'hint');
@@ -81,14 +92,19 @@ class LsCommand extends TerminalCommand {
             const size = entry.type === 'directory' ? '-' : `${entry.size}B`;
             const permissions = entry.permissions || 'r--';
             
-            terminal.addOutput(
-                `${permissions} ${type.padEnd(4)} ${size.padStart(6)} ${icon} ${entry.name}`,
-                'command-item'
-            );
+            if (isMobile) {
+                // Compact mobile format
+                terminal.addOutput(`${icon} ${entry.name}`, 'command-item');
+            } else {
+                terminal.addOutput(
+                    `${permissions} ${type.padEnd(4)} ${size.padStart(6)} ${icon} ${entry.name}`,
+                    'command-item'
+                );
+            }
         });
         
         terminal.addOutput('', 'system');
-        terminal.addOutput(`${entries.length} items total`, 'hint');
+        terminal.addOutput(`${entries.length} items`, 'hint');
     }
 }
 
@@ -284,16 +300,32 @@ class TreeCommand extends TerminalCommand {
     }
     
     execute(args, terminal) {
-        terminal.addOutput('hackercats.club/', 'section');
-        this.showTree(terminal.fileSystem.root, '', terminal, true);
+        const isMobile = window.innerWidth <= 768;
         
-        // Count total files and directories
-        const allEntries = terminal.fileSystem.find('');
-        const dirs = allEntries.filter(e => e.isDirectory()).length;
-        const files = allEntries.filter(e => e.isFile()).length;
-        
-        terminal.addOutput('', 'system');
-        terminal.addOutput(`${dirs} directories, ${files} files`, 'hint');
+        if (isMobile) {
+            // Mobile: show simplified list instead of tree
+            terminal.addOutput('SITE STRUCTURE', 'section');
+            terminal.addOutput('', 'system');
+            const entries = terminal.fileSystem.find('');
+            entries.slice(0, 15).forEach(entry => {
+                const icon = terminal.fileSystem.getFileIcon(entry);
+                terminal.addOutput(`${icon} ${entry.name}`, 'command-item');
+            });
+            if (entries.length > 15) {
+                terminal.addOutput(`... and ${entries.length - 15} more`, 'hint');
+            }
+        } else {
+            terminal.addOutput('hackercats.club/', 'section');
+            this.showTree(terminal.fileSystem.root, '', terminal, true);
+            
+            // Count total files and directories
+            const allEntries = terminal.fileSystem.find('');
+            const dirs = allEntries.filter(e => e.isDirectory()).length;
+            const files = allEntries.filter(e => e.isFile()).length;
+            
+            terminal.addOutput('', 'system');
+            terminal.addOutput(`${dirs} directories, ${files} files`, 'hint');
+        }
     }
     
     showTree(entry, prefix, terminal, isLast = false) {

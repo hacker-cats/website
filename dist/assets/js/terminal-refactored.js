@@ -108,6 +108,12 @@ class HackercatsTerminal {
         // Close button
         this.closeBtn.addEventListener('click', () => this.hide());
         
+        // Mobile terminal button
+        const mobileBtn = document.getElementById('mobile-terminal-btn');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => this.show());
+        }
+        
         // Click outside to close
         this.terminal.addEventListener('click', (e) => {
             if (e.target === this.terminal) {
@@ -116,9 +122,14 @@ class HackercatsTerminal {
         });
         
         // Welcome message
+        const isMobile = window.innerWidth <= 768;
         this.addOutput('hackercats terminal v2.0.0', 'system');
-        this.addOutput('Enhanced with file system and extensible commands', 'system');
-        this.addOutput('Type "help" for available commands or Ctrl+` to open/close', 'system');
+        if (!isMobile) {
+            this.addOutput('Enhanced with file system and extensible commands', 'system');
+            this.addOutput('Type "help" for available commands or Ctrl+` to open/close', 'system');
+        } else {
+            this.addOutput('Mobile terminal - Type "help" for commands', 'system');
+        }
         this.addOutput('', 'system');
     }
     

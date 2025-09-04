@@ -1059,6 +1059,55 @@ html {
   border: 1px solid var(--primary-gold);
 }
 
+/* Mobile Terminal Button */
+.mobile-terminal-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary-gold);
+  border: 2px solid var(--neon-amber);
+  color: var(--bg-darker);
+  font-size: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(212, 165, 116, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 9998;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+.mobile-terminal-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(244, 200, 66, 0.5);
+  background: var(--neon-amber);
+}
+
+.mobile-terminal-button:active {
+  transform: translateY(0);
+}
+
+/* Show button only on mobile */
+@media (max-width: 768px) {
+  .mobile-terminal-button {
+    display: flex;
+  }
+}
+
+/* Hide button when terminal is active */
+.terminal-overlay.active ~ .mobile-terminal-button {
+  display: none;
+}
+
 /* Terminal Command Line Interface */
 .terminal-overlay {
   position: fixed;
@@ -1272,16 +1321,88 @@ html {
 /* Mobile responsive */
 @media (max-width: 768px) {
   .terminal-content {
-    width: 95vw;
-    height: 70vh;
+    width: 98vw;
+    height: 85vh;
+    max-height: none;
+    border-width: 2px;
+  }
+  
+  .terminal-header {
+    padding: 0.25rem 0.5rem;
   }
   
   .terminal-title {
     font-size: 8px;
   }
   
-  .terminal-output,
+  .terminal-close {
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  .terminal-body {
+    padding: 0.5rem;
+  }
+  
+  .terminal-output {
+    font-size: 14px;
+    line-height: 1.1;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .terminal-output-line {
+    margin-bottom: 0.05rem;
+  }
+  
+  .terminal-output-section {
+    font-size: 12px;
+    padding: 0.05rem 0.25rem;
+    margin: 0.1rem 0;
+  }
+  
+  .terminal-output-header {
+    font-size: 14px;
+    padding: 0.15rem;
+    margin: 0.15rem 0;
+  }
+  
   .terminal-input-line {
     font-size: 14px;
+    letter-spacing: 0.25px;
+  }
+  
+  .terminal-input {
+    font-size: 14px;
+    letter-spacing: 0.25px;
+  }
+  
+  .terminal-prompt {
+    margin-right: 0.25rem;
+  }
+  
+  /* Mobile touch improvements */
+  .terminal-input {
+    /* Prevent zoom on focus for iOS */
+    font-size: 16px !important;
+  }
+  
+  .terminal-overlay {
+    /* Prevent scrolling behind terminal on mobile */
+    position: fixed;
+    touch-action: none;
+  }
+  
+  .terminal-content {
+    /* Better mobile viewport handling */
+    position: relative;
+  }
+  
+  /* Hide complex vim/emacs indicators on mobile */
+  .terminal-output-vim-indicator,
+  .terminal-output-vim-help {
+    display: none;
   }
 }
