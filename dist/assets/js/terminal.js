@@ -30,7 +30,6 @@ class HackercatsTerminal {
             '/': { title: 'Home', url: '/' },
             '/about': { title: 'About', url: '/about' },
             '/events': { title: 'Events', url: '/events' },
-            '/projects': { title: 'Projects', url: '/projects' },
             '/stats': { title: 'CTF Stats', url: '/stats' },
             '/join': { title: 'Join Us', url: '/join' }
         };
@@ -48,6 +47,7 @@ class HackercatsTerminal {
             'base64 <text>': 'Encode/decode base64',
             'md5 <text>': 'Generate MD5 hash',
             'email': 'Show contact information',
+            'qr': 'Open Discord QR code page',
             'matrix': 'Enter the matrix...',
             'cowsay <text>': 'ASCII cow says your message',
             'fortune': 'Display hacker wisdom',
@@ -252,6 +252,9 @@ class HackercatsTerminal {
                 break;
             case 'email':
                 this.showEmail();
+                break;
+            case 'qr':
+                this.openQRPage();
                 break;
             case 'matrix':
                 this.startMatrix();
@@ -652,6 +655,15 @@ class HackercatsTerminal {
         this.addOutput('🕒 Meetings: Wednesdays at 6:00 PM', 'command-item');
         this.addOutput('', 'system');
         this.addOutput('> Join our Discord for fastest response!', 'hint');
+    }
+    
+    openQRPage() {
+        this.addOutput('Opening Discord QR code page...', 'system');
+        this.addOutput('Scan the QR code to join our Discord server!', 'hint');
+        // Delay navigation slightly for better UX
+        setTimeout(() => {
+            window.location.href = '/qr/';
+        }, 500);
     }
     
     startMatrix() {

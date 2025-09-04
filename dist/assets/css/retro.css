@@ -1141,13 +1141,14 @@ html {
   overflow-y: auto;
   font-family: 'VT323', monospace;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
   color: var(--text-light);
   margin-bottom: 1rem;
 }
 
 .terminal-output-line {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .terminal-output-command {
@@ -1241,6 +1242,7 @@ html {
   align-items: center;
   font-family: 'VT323', monospace;
   font-size: 16px;
+  letter-spacing: 0.5px;
 }
 
 .terminal-prompt {
@@ -1257,6 +1259,7 @@ html {
   color: var(--text-lighter);
   font-family: 'VT323', monospace;
   font-size: 16px;
+  letter-spacing: 0.5px;
   caret-color: var(--neon-amber);
 }
 
