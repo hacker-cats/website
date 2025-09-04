@@ -1,6 +1,6 @@
 # About Hackercats
 
-We are a passionate community of programmers, designers, and tech enthusiasts at [Your College Name]. Our club brings together students who love to code, learn, and build amazing projects together.
+We are a passionate community of programmers, designers, and tech enthusiasts based at Montana State University. Our club brings together students who love cybersecurity, competitive programming, and building amazing projects together.
 
 ## Our Mission
 
@@ -11,12 +11,11 @@ We are a passionate community of programmers, designers, and tech enthusiasts at
 
 ## What We Do
 
-- Weekly coding workshops
-- Monthly hackathons
-- Guest speaker sessions
-- Open source project collaborations
-- Interview preparation sessions
-- Career guidance and mentorship
+- **CTF Competitions**: We actively participate in Capture The Flag cybersecurity competitions
+- **Mentoring**: Experienced members guide newcomers through their cybersecurity journey
+- **Community Events**: We organize CTF events for local community organizations
+- **Skill Development**: Hands-on workshops covering various cybersecurity topics
+- **Collaborative Learning**: Team-based approach to solving security challenges
 
 ## Club Values
 

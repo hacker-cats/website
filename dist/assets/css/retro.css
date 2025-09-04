@@ -1,5 +1,21 @@
 /* 90s Pixel Art Hacker Theme for Hackercats */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap');
+
+/* Local Font Declarations */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/VT323-Regular.ttf') format('truetype');
+}
 
 :root {
   /* Golden Hacker Color Palette - Based on Logo */
@@ -151,7 +167,7 @@ a:focus {
 .navbar-brand .navbar-item {
   font-size: 16px;
   color: var(--primary-gold) !important;
-  text-shadow: 0 0 10px var(--primary-gold);
+  text-shadow: 0 0 5px var(--primary-gold);
   animation: glow 2s ease-in-out infinite alternate;
 }
 
@@ -159,13 +175,13 @@ a:focus {
 @media (prefers-reduced-motion: reduce) {
   .navbar-brand .navbar-item {
     animation: none;
-    text-shadow: 0 0 10px var(--primary-gold);
+    text-shadow: 0 0 5px var(--primary-gold);
   }
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 5px var(--primary-gold); }
-  to { text-shadow: 0 0 20px var(--primary-gold); }
+  from { text-shadow: 0 0 3px var(--primary-gold); }
+  to { text-shadow: 0 0 8px var(--primary-gold); }
 }
 
 .navbar-item {
@@ -283,9 +299,9 @@ a:focus {
   font-family: 'Press Start 2P', monospace;
   color: #ffffff;
   text-shadow: 
+    0 0 5px var(--neon-amber),
     0 0 10px var(--neon-amber),
-    0 0 20px var(--neon-amber),
-    0 0 30px var(--neon-amber),
+    0 0 15px var(--neon-amber),
     4px 4px 0px var(--bg-darker),
     -1px -1px 0px var(--bg-darker),
     1px -1px 0px var(--bg-darker),
@@ -305,12 +321,12 @@ a:focus {
   font-family: 'Press Start 2P', monospace;
   font-size: 10px !important;
   text-transform: uppercase;
-  background: var(--bg-darker);
-  color: var(--primary-gold);
+  background: var(--primary-gold);
+  color: var(--bg-darker);
   border: 2px solid var(--primary-gold);
   border-radius: 0;
   padding: 15px 25px;
-  box-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+  box-shadow: 0 0 5px rgba(212, 165, 116, 0.3);
   transition: all 0.3s;
   cursor: pointer;
   min-height: 44px; /* Minimum touch target size for accessibility */
@@ -319,9 +335,10 @@ a:focus {
 
 .button:hover,
 .button:focus {
-  background: var(--primary-gold);
+  background: var(--retro-yellow);
   color: var(--bg-darker);
-  box-shadow: 0 0 20px var(--primary-gold);
+  border-color: var(--retro-yellow);
+  box-shadow: 0 0 15px var(--retro-yellow);
   transform: translateY(-2px);
 }
 
@@ -343,6 +360,21 @@ a:focus {
   background: var(--retro-yellow);
   border-color: var(--retro-yellow);
   box-shadow: 0 0 20px var(--retro-yellow);
+}
+
+.button.is-primary {
+  background: var(--primary-gold) !important;
+  color: var(--bg-darker) !important;
+  border: 2px solid var(--primary-gold) !important;
+  box-shadow: 0 0 5px rgba(212, 165, 116, 0.3) !important;
+}
+
+.button.is-primary:hover,
+.button.is-primary:focus {
+  background: var(--retro-yellow) !important;
+  color: var(--bg-darker) !important;
+  border-color: var(--retro-yellow) !important;
+  box-shadow: 0 0 15px var(--retro-yellow) !important;
 }
 
 /* Cards */

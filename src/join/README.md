@@ -11,7 +11,7 @@ Our Discord is the heart of our community where we:
 - Announce events and opportunities
 - Help each other with coding challenges
 
-**[Join Discord](https://discord.gg/hackercats)** *(Replace with actual invite link)*
+**[Join Discord](https://discord.gg/e29dBJhp9H)**
 
 ### 2. Follow Us on GitHub
 Stay updated with our projects and contribute to our codebase:
@@ -19,7 +19,7 @@ Stay updated with our projects and contribute to our codebase:
 - Contribute to ongoing initiatives
 - Showcase your own projects
 
-**[GitHub Organization](https://github.com/hackercats)** *(Replace with actual organization)*
+**[GitHub Organization](https://github.com/hacker-cats)**
 
 ### 3. Attend Our Events
 Jump right in by attending our weekly events:
@@ -62,8 +62,8 @@ Jump right in by attending our weekly events:
 
 Have questions? Reach out to us:
 
-- **Discord**: @hackercats-admins
-- **Email**: hackercats@[your-college].edu
-- **Meeting Location**: Computer Science Building, Room 101
+- **Discord**: @officer or @advisor
+- **Email**: hackercats.club@gmail.com or pres@hackercats.club
+- **Meeting Location**: NAH 331
 
 We can't wait to meet you and see what amazing things we'll build together!

@@ -8,7 +8,7 @@ class StaticSiteGenerator {
         this.srcDir = path.join(__dirname, 'src');
         this.distDir = path.join(__dirname, 'dist');
         this.templatePath = path.join(__dirname, 'template.html');
-        this.sections = ['about', 'events', 'projects', 'stats', 'join'];
+        this.sections = ['about', 'events', 'stats', 'join'];
     }
 
     async generate() {
@@ -26,7 +26,7 @@ class StaticSiteGenerator {
         }
         
         console.log('✅ Multi-page site generated successfully!');
-        console.log(`📁 Pages: index.html, about.html, events.html, projects.html, join.html`);
+        console.log(`📁 Pages: index.html, about.html, events.html, stats.html, join.html`);
     }
 
     async generateHomepage(template) {
@@ -39,15 +39,15 @@ class StaticSiteGenerator {
                         <i class="fas fa-terminal"></i> hackercats.exe
                     </h1>
                     <h2 class="subtitle is-4">
-                        > initializing cyber_cats protocol...<br>
-                        > where l337 c0d1ng meets cr34t1v1ty<br>
-                        > college.hacker.collective loaded
+                        Montana State University's cybersecurity club<br>
+                        CTF competitions • Mentoring • Community events<br>
+                        Building skills, one challenge at a time
                     </h2>
                     <a class="button is-light is-large" href="/join">
                         <span class="icon">
                             <i class="fas fa-rocket"></i>
                         </span>
-                        <span>jack_in</span>
+                        <span>Join Us</span>
                     </a>
                 </div>
             </div>
@@ -55,12 +55,13 @@ class StaticSiteGenerator {
 
         const homeContent = `
         <div class="terminal-window">
-            <h2 class="title is-2">> accessing hackercats mainframe...</h2>
+            <h2 class="title is-2">Welcome to Hackercats</h2>
             <p class="content">
-                [connection established]<br>
-                > we are elite c0ders and 1337 hackers forming the ultimate college cyber collective.<br>
-                > mission: level up programming skills, collaborate on epic projects, and dominate ctf competitions.<br>
-                > status: currently recruiting new members
+                We are a cybersecurity club at Montana State University focused on:<br>
+                • Competing in CTF (Capture The Flag) competitions<br>
+                • Mentoring students in cybersecurity skills<br>
+                • Organizing community events and workshops<br>
+                • Building a strong security community
             </p>
         </div>
         
@@ -68,36 +69,27 @@ class StaticSiteGenerator {
             <div class="column is-6-desktop is-12-tablet is-12-mobile">
                 <div class="card">
                     <div class="card-content">
-                        <h3 class="title is-4"><i class="fas fa-users"></i> about.txt</h3>
-                        <p>> our mission statement, cyber values, and what makes our hacker collective legendary.</p>
-                        <a href="/about" class="button is-primary">access file</a>
+                        <h3 class="title is-4"><i class="fas fa-users"></i> About</h3>
+                        <p>Learn about our club, mission, and what we do at Montana State University.</p>
+                        <a href="/about" class="button is-primary">Learn More</a>
                     </div>
                 </div>
             </div>
             <div class="column is-6-desktop is-12-tablet is-12-mobile">
                 <div class="card">
                     <div class="card-content">
-                        <h3 class="title is-4"><i class="fas fa-calendar"></i> events.log</h3>
-                        <p>> upcoming hackathons, coding sessions, and cyber warfare training events.</p>
-                        <a href="/events" class="button is-primary">load schedule</a>
+                        <h3 class="title is-4"><i class="fas fa-calendar"></i> Events</h3>
+                        <p>Check out our upcoming meetings, CTF competitions, and community events.</p>
+                        <a href="/events" class="button is-primary">View Schedule</a>
                     </div>
                 </div>
             </div>
             <div class="column is-6-desktop is-12-tablet is-12-mobile">
                 <div class="card">
                     <div class="card-content">
-                        <h3 class="title is-4"><i class="fas fa-code"></i> projects.db</h3>
-                        <p>> epic code repositories and digital masterpieces created by our elite hackers.</p>
-                        <a href="/projects" class="button is-primary">browse database</a>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-6-desktop is-12-tablet is-12-mobile">
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="title is-4"><i class="fas fa-trophy"></i> ctf_stats.sys</h3>
-                        <p>> real-time scoreboard tracking our capture the flag victories and hacker rankings.</p>
-                        <a href="/stats" class="button is-primary">analyze data</a>
+                        <h3 class="title is-4"><i class="fas fa-trophy"></i> CTF Stats</h3>
+                        <p>Track our team's performance in Capture The Flag competitions.</p>
+                        <a href="/stats" class="button is-primary">View Stats</a>
                     </div>
                 </div>
             </div>
@@ -107,9 +99,9 @@ class StaticSiteGenerator {
             <div class="column is-8-desktop is-10-tablet is-12-mobile">
                 <div class="card">
                     <div class="card-content has-text-centered">
-                        <h3 class="title is-4"><i class="fas fa-user-plus"></i> recruitment.exe</h3>
-                        <p>> ready to jack into the matrix? initialize your membership protocol and join the elite.</p>
-                        <a href="/join" class="button is-primary is-large">execute join</a>
+                        <h3 class="title is-4"><i class="fas fa-user-plus"></i> Join Our Club</h3>
+                        <p>Ready to get started? Learn how to join our cybersecurity community.</p>
+                        <a href="/join" class="button is-primary is-large">Join Us</a>
                     </div>
                 </div>
             </div>
@@ -121,7 +113,6 @@ class StaticSiteGenerator {
             .replace('{{CONTENT}}', homeContent)
             .replace('{{ABOUT_ACTIVE}}', '')
             .replace('{{EVENTS_ACTIVE}}', '')
-            .replace('{{PROJECTS_ACTIVE}}', '')
             .replace('{{STATS_ACTIVE}}', '')
             .replace('{{JOIN_ACTIVE}}', '');
 
@@ -138,7 +129,6 @@ class StaticSiteGenerator {
             .replace('{{CONTENT}}', content)
             .replace('{{ABOUT_ACTIVE}}', section === 'about' ? 'is-active' : '')
             .replace('{{EVENTS_ACTIVE}}', section === 'events' ? 'is-active' : '')
-            .replace('{{PROJECTS_ACTIVE}}', section === 'projects' ? 'is-active' : '')
             .replace('{{STATS_ACTIVE}}', section === 'stats' ? 'is-active' : '')
             .replace('{{JOIN_ACTIVE}}', section === 'join' ? 'is-active' : '');
 
