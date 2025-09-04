@@ -11,7 +11,7 @@ Our Discord is the heart of our community where we:
 - Announce events and opportunities
 - Help each other with coding challenges
 
-**[Join Discord](https://discord.gg/hackercats)** *(Replace with actual invite link)*
+**[Join Discord](https://discord.gg/e29dBJhp9H)**
 
 ### 2. Follow Us on GitHub
 Stay updated with our projects and contribute to our codebase:
