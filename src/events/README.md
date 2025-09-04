@@ -19,7 +19,15 @@ Join us for our next meeting! We'll be discussing upcoming projects and planning
 Stay tuned for details about our upcoming guest speaker session!
 
 ### CTF Competitions
-**Status**: Coming Soon  
 
-We're organizing Capture The Flag competitions! More details will be announced soon.
+#### RSTCON 2025 CTF
+**Date**: Friday, October 24th - Sunday, October 26th, 2025  
+**Time**: 7:00 PM UTC (Oct 24) - 2:00 PM UTC (Oct 26)  
+**Format**: Jeopardy-style CTF  
+**Location**: Online  
+**Organizer**: RSTCON / MetaCTF  
+**Registration**: [https://mctf.io/rstcon25](https://mctf.io/rstcon25)  
+**Discord**: [Join the Discord](https://discord.gg/va7PvCRN9g)
+
+Join us for the RSTCON 2025 CTF! This is an annual technical security and hacking conference focusing on research, exploitation, and tradecraft in logistics, energy, and manufacturing industries. Winners get free tickets to next year's RSTCON and a RSTCON hard hat!
 
