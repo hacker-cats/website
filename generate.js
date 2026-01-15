@@ -498,10 +498,17 @@ class StaticSiteGenerator {
     markdownToHtml(markdown) {
         let html = markdown;
 
+        // Preserve HTML blocks (like div.qr-container-single) by marking them
+        const htmlBlocks = [];
+        html = html.replace(/(<div[^>]*>[\s\S]*?<\/div>)/gim, (match) => {
+            htmlBlocks.push(match);
+            return `___HTML_BLOCK_${htmlBlocks.length - 1}___`;
+        });
+
         // Headers
-        html = html.replace(/^### (.*$)/gim, '<h3 class="title is-4">$1</h3>');
-        html = html.replace(/^## (.*$)/gim, '<h2 class="title is-3">$1</h2>');
-        html = html.replace(/^# (.*$)/gim, '<h1 class="title is-2">$1</h1>');
+        html = html.replace(/^### (.*$)/gim, '\n\n<h3 class="title is-4">$1</h3>\n\n');
+        html = html.replace(/^## (.*$)/gim, '\n\n<h2 class="title is-3">$1</h2>\n\n');
+        html = html.replace(/^# (.*$)/gim, '\n\n<h1 class="title is-2">$1</h1>\n\n');
 
         // Links
         html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" class="has-text-primary">$1</a>');
@@ -512,30 +519,44 @@ class StaticSiteGenerator {
         html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
 
         // Code blocks
-        html = html.replace(/```([^`]+)```/gim, '<pre><code>$1</code></pre>');
+        html = html.replace(/```([^`]+)```/gim, '\n\n<pre><code>$1</code></pre>\n\n');
         html = html.replace(/`([^`]+)`/gim, '<code class="has-background-grey-lighter">$1</code>');
 
-        // Lists
-        html = html.replace(/^[\-\*] (.*$)/gim, '<li>$1</li>');
+        // Lists - convert to list items
+        html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
+        html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
         html = html.replace(/^(\d+)\. (.*$)/gim, '<li>$2</li>');
-        
+
         // Wrap consecutive list items in ul tags with no-bullets class
-        html = html.replace(/(<li>.*<\/li>\n?)+/gs, (match) => {
-            return `<ul class="content no-bullets">${match}</ul>`;
+        html = html.replace(/(<li>.*?<\/li>\n?)+/gs, (match) => {
+            return `\n\n<ul class="content no-bullets">\n${match}</ul>\n\n`;
         });
 
-        // Line breaks and paragraphs
-        html = html.replace(/\n\n/g, '</p><p class="content">');
-        html = `<p class="content">${html}</p>`;
+        // Split into blocks (separated by double newlines)
+        const blocks = html.split(/\n\n+/);
+        const processedBlocks = blocks.map(block => {
+            block = block.trim();
+            if (!block) return '';
 
-        // Clean up
-        html = html.replace(/<p class="content"><\/p>/g, '');
-        html = html.replace(/<p class="content">(<h[1-6])/g, '$1');
-        html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
-        html = html.replace(/<p class="content">(<ul)/g, '$1');
-        html = html.replace(/(<\/ul>)<\/p>/g, '$1');
-        html = html.replace(/<p class="content">(<pre)/g, '$1');
-        html = html.replace(/(<\/pre>)<\/p>/g, '$1');
+            // Skip if already wrapped in HTML tags
+            if (block.match(/^<(h[1-6]|ul|ol|pre|div|table)/i)) {
+                return block;
+            }
+
+            // Wrap in paragraph
+            return `<p class="content">${block}</p>`;
+        });
+
+        html = processedBlocks.filter(b => b).join('\n');
+
+        // Restore HTML blocks
+        htmlBlocks.forEach((block, index) => {
+            html = html.replace(`<p class="content">___HTML_BLOCK_${index}___</p>`, block);
+            html = html.replace(`___HTML_BLOCK_${index}___`, block);
+        });
+
+        // Clean up empty paragraphs
+        html = html.replace(/<p class="content">\s*<\/p>/g, '');
 
         return html;
     }
