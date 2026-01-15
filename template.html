@@ -21,7 +21,7 @@
 <body>
     <!-- Skip link for screen readers -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+
     <!-- Navigation -->
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
@@ -50,7 +50,13 @@
     {{HERO_SECTION}}
 
     <!-- Content Container -->
-    <div class="content-container">
+    <div class="content-container" style="position: relative;">
+        <!-- Floating QR Code (shown when ?qr=1 in URL) -->
+        <div class="floating-qr" aria-hidden="true">
+            <img src="/assets/images/hackercats.join.png" alt="Join Hackercats QR Code">
+            <div class="floating-qr-label">Scan to Join</div>
+        </div>
+
         <div class="columns is-centered">
             <div class="column is-10-desktop is-12-tablet is-12-mobile">
                 <main id="main-content" role="main">
@@ -101,5 +107,6 @@
     <script src="/assets/js/terminal-filesystem.js"></script>
     <script src="/assets/js/terminal-commands.js"></script>
     <script src="/assets/js/terminal-refactored.js"></script>
+    <script src="/assets/js/qr-display.js"></script>
 </body>
 </html>

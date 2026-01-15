@@ -1501,3 +1501,49 @@ a.has-text-primary:hover {
 }
 
 /* Mobile responsive styles are consolidated in main mobile media query above */
+
+/* Floating QR Code in Margin */
+.floating-qr {
+  position: fixed;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: none;
+  max-width: 300px;
+  padding: 15px;
+  background: var(--bg-darker);
+  border: 3px solid var(--primary-gold);
+  box-shadow: 0 0 20px rgba(212, 165, 116, 0.4);
+  border-radius: 0;
+  text-align: center;
+}
+
+.floating-qr.visible {
+  display: block;
+}
+
+.floating-qr img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid var(--terminal-gold);
+  background: white;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.floating-qr-label {
+  color: var(--text-lighter);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* Hide on smaller screens where there's no margin space */
+@media (max-width: 1400px) {
+  .floating-qr {
+    display: none !important;
+  }
+}
