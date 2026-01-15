@@ -8,7 +8,7 @@ class StaticSiteGenerator {
         this.srcDir = path.join(__dirname, 'src');
         this.distDir = path.join(__dirname, 'dist');
         this.templatePath = path.join(__dirname, 'template.html');
-        this.sections = ['about', 'events', 'stats', 'join'];
+        this.sections = ['about', 'events', 'stats', 'join', 'qr'];
     }
 
     async generate() {
@@ -34,13 +34,13 @@ class StaticSiteGenerator {
         <!-- Hero Section -->
         <section class="hero is-primary is-small">
             <div class="hero-body">
-                <div class="container">
+                <div class="container has-text-centered">
                     <h1 class="title is-1">
                         <i class="fas fa-terminal"></i> hackercats.exe
                     </h1>
                     <h2 class="subtitle is-4">
                         Montana State University's cybersecurity club<br>
-                        CTF competitions • Mentoring • Community events<br>
+                        • CTF competitions • Mentoring • Community events •<br>
                         Building skills, one challenge at a time
                     </h2>
                     <a class="button is-light is-large" href="/join">

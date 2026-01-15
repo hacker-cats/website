@@ -44,11 +44,11 @@
 
 body {
   background-color: var(--bg-dark);
-  color: var(--text-light);
+  color: var(--text-lighter);
   font-family: 'VT323', monospace;
   font-size: 18px;
   line-height: 1.6; /* Improved line height for readability */
-  background-image: 
+  background-image:
     repeating-linear-gradient(
       0deg,
       transparent,
@@ -298,7 +298,7 @@ a:focus {
 .hero .title {
   font-family: 'Press Start 2P', monospace;
   color: #ffffff;
-  text-shadow: 
+  text-shadow:
     0 0 5px var(--neon-amber),
     0 0 10px var(--neon-amber),
     0 0 15px var(--neon-amber),
@@ -314,6 +314,18 @@ a:focus {
   font-family: 'VT323', monospace;
   color: var(--text-light);
   font-size: 1.5rem !important;
+}
+
+.hero .container.has-text-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero .container.has-text-centered .title,
+.hero .container.has-text-centered .subtitle {
+  text-align: left;
+  width: fit-content;
 }
 
 /* Buttons */
@@ -550,7 +562,7 @@ a:focus {
 .content {
   font-family: 'VT323', monospace;
   font-size: 18px;
-  color: var(--text-light);
+  color: var(--text-lighter);
   line-height: 1.6;
 }
 
@@ -559,8 +571,9 @@ a:focus {
 }
 
 .content strong {
-  color: var(--primary-gold);
-  font-weight: normal;
+  color: var(--neon-amber);
+  font-weight: bold;
+  text-shadow: 0 0 3px var(--neon-amber);
 }
 
 .content a {
@@ -569,8 +582,88 @@ a:focus {
 }
 
 .content a:hover {
-  color: var(--neon-pink);
-  text-shadow: 0 0 10px var(--neon-pink);
+  color: var(--retro-yellow);
+  text-shadow: 0 0 3px var(--retro-yellow);
+}
+
+/* Figures */
+.content figure {
+  margin: 2rem auto;
+  text-align: center;
+  padding: 1rem;
+  background: var(--bg-darker);
+  border: 2px solid var(--primary-gold);
+  box-shadow: 0 0 10px rgba(212, 165, 116, 0.2);
+}
+
+.content figure img {
+  display: block;
+  margin: 0 auto 1rem auto;
+  border: 1px solid var(--terminal-gold);
+}
+
+.content figcaption {
+  color: var(--text-lighter);
+  font-size: 16px;
+  font-style: italic;
+}
+
+/* QR Code Display */
+.qr-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.qr-item {
+  background: var(--bg-darker);
+  border: 2px solid var(--primary-gold);
+  border-radius: 0;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.3);
+}
+
+.qr-item img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto 1.5rem auto;
+  border: 2px solid var(--terminal-gold);
+  background: white;
+  padding: 0.5rem;
+}
+
+.qr-label {
+  color: var(--text-lighter);
+  font-size: 18px;
+  margin: 0;
+  font-family: 'VT323', monospace;
+}
+
+@media (max-width: 768px) {
+  .qr-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+  }
+}
+
+/* Single QR Code */
+.qr-container-single {
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.qr-container-single .qr-item {
+  width: 100%;
 }
 
 /* Lists */
@@ -629,6 +722,7 @@ ul.content.no-bullets li {
 /* Base typography scaling */
 html {
   font-size: 16px; /* Base size */
+  background-color: var(--bg-darker);
 }
 
 /* Container optimizations for different screen sizes */

@@ -4,26 +4,14 @@ Ready to dive into the world of programming and innovation? We'd love to have yo
 
 ## How to Join
 
-### 1. Join Our Discord Server
-Our Discord is the heart of our community where we:
-- Share coding tips and resources
-- Organize study groups and pair programming sessions
-- Announce events and opportunities
-- Help each other with coding challenges
+### 1. [Join Our Discord Server](https://discord.gg/e29dBJhp9H)
+Our Discord is the heart of our community where we organize meetings, share tips, and announce events.
 
 **[Join Discord](https://discord.gg/e29dBJhp9H)**
 
-### 2. Follow Us on GitHub
-Stay updated with our projects and contribute to our codebase:
-- Check out our open source projects
-- Contribute to ongoing initiatives
-- Showcase your own projects
-
-**[GitHub Organization](https://github.com/hacker-cats)**
-
-### 3. Attend Our Events
+### 2. Attend Our Events
 Jump right in by attending our weekly events:
-- **Weekly Meetings**: Wednesdays at 6:00 PM
+- **Weekly Meetings**: Wednesdays at 6:00 PM in NAH 331
 - **Hackathons**: Monthly weekend events
 - **Workshops**: Skill-building sessions
 
@@ -52,11 +40,10 @@ Jump right in by attending our weekly events:
 ## Getting Started Checklist
 
 - [ ] Join our Discord server
-- [ ] Follow us on GitHub
 - [ ] Attend your first meeting
-- [ ] Introduce yourself to the community
+- [ ] Get comfortable and then introduce yourself
 - [ ] Sign up for upcoming events
-- [ ] Find a project or workshop that interests you
+- [ ] Join us in building a CTF!
 
 ## Contact Us
 

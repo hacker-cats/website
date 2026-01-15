@@ -10,7 +10,8 @@
       "Bash(curl:*)",
       "Bash(unzip:*)",
       "Bash(npm run build:*)",
-      "WebFetch(domain:ctftime.org)"
+      "WebFetch(domain:ctftime.org)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []

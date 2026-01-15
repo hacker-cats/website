@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR - Hackercats</title>
+    <title>Qr - Hackercats</title>
     
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
@@ -52,20 +52,17 @@
     <!-- Content Container -->
     <div class="content-container">
         <div class="columns is-centered">
-            <div class="column is-8-desktop is-10-tablet is-12-mobile">
+            <div class="column is-10-desktop is-12-tablet is-12-mobile">
                 <main id="main-content" role="main">
                     <section class="section">
-                        <div class="content reading-optimized has-text-centered">
-                            <h1 class="title is-2">Quick Connect</h1>
-                            <div class="terminal-window">
-                                <p class="content">Join our Discord server by scanning the QR code below:</p>
-                                <div class="has-text-centered" style="margin: 2rem 0;">
-                                    <img src="/assets/images/join.qr.png" alt="Discord QR Code" style="max-width: 300px; border: 2px solid var(--terminal-gold); padding: 1rem; background: white;">
-                                </div>
-                                <p class="content">
-                                    <strong>Discord Server:</strong> <a href="https://discord.gg/e29dBJhp9H" class="has-text-primary">discord.gg/e29dBJhp9H</a>
-                                </p>
-                            </div>
+                        <div class="content reading-optimized">
+                            <h1 class="title is-2">QR Code</h1><p class="content">Scan this QR code to learn more about Hackercats.</p><p class="content"><div class="qr-container-single">
+  <div class="qr-item">
+    <img src="/assets/images/hackercats.about.png" alt="About Hackercats QR Code" />
+    <p class="qr-label">Learn about Hackercats</p>
+  </div>
+</div>
+</p>
                         </div>
                     </section>
                 </main>
@@ -77,11 +74,16 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>hackercats.exe</strong> - compiled with <i class="fas fa-heart has-text-danger"></i> and 1337 sk1llz<br>
-                <small>> system status: online | matrix connection: active | firewall: breached</small>
+                <strong>hackercats.exe</strong> - compiled with <i class="fas fa-heart has-text-danger"></i><br>
+                <small>> system status: online </small>
             </p>
         </div>
     </footer>
+    
+    <!-- Mobile Terminal Button -->
+    <button id="mobile-terminal-btn" class="mobile-terminal-button" aria-label="Open terminal">
+        <i class="fas fa-terminal"></i>
+    </button>
     
     <!-- Command Line Interface -->
     <div id="terminal" class="terminal-overlay">
@@ -102,6 +104,8 @@
 
     <!-- Scripts -->
     <script src="/assets/js/mobile-nav.js"></script>
-    <script src="/assets/js/terminal.js"></script>
+    <script src="/assets/js/terminal-filesystem.js"></script>
+    <script src="/assets/js/terminal-commands.js"></script>
+    <script src="/assets/js/terminal-refactored.js"></script>
 </body>
 </html>
