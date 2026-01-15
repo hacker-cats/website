@@ -11,7 +11,7 @@ Our Discord is the heart of our community where we organize meetings, share tips
 
 ### 2. Attend Our Events
 Jump right in by attending our weekly events:
-- **Weekly Meetings**: Wednesdays at 6:00 PM in NAH 331
+- **Weekly Meetings**: Wednesdays at 6:00 PM in NAH 325
 - **Hackathons**: Monthly weekend events
 - **Workshops**: Skill-building sessions
 
@@ -51,6 +51,6 @@ Have questions? Reach out to us:
 
 - **Discord**: @officer or @advisor
 - **Email**: hackercats.club@gmail.com or pres@hackercats.club
-- **Meeting Location**: NAH 331
+- **Meeting Location**: NAH 325
 
 We can't wait to meet you and see what amazing things we'll build together!
