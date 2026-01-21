@@ -3,13 +3,7 @@
 # Welcome to Hackercats
 
 
-<div class="content-container" style="position: relative;">
-  <!-- Floating QR Code (shown when ?qr=1 in URL) -->
-  <div class="floating-qr" aria-hidden="true">
-    <img src="/assets/images/hackercats.survey.png" alt="Join Hackercats QR Code">
-    <div class="floating-qr-label">Scan to Join</div>
-  </div>
-</div>
+<img src="/assets/images/hackercats.survey.png" alt="Join Hackercats QR Code">
 
 (or just fill it out)
 
