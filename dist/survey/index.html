@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey - Hackercats</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon-64x64.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/android-chrome-192x192.png">
+    <meta name="theme-color" content="#d4a574">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/libs/bulma.min.css">
+    <link rel="stylesheet" href="/assets/libs/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/css/retro.css">
+</head>
+<body>
+    <!-- Skip link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/" aria-label="hackercats home">
+                <strong>hackercats</strong>
+            </a>
+            
+            <!-- Mobile hamburger menu -->
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu" tabindex="0">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item " href="/about" aria-label="About us">About</a>
+                <a class="navbar-item " href="/events" aria-label="Events and activities">Events</a>
+                <a class="navbar-item " href="/stats" aria-label="CTF statistics">CTF Stats</a>
+                <a class="navbar-item " href="/join" aria-label="Join our club">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    
+
+    <!-- Content Container -->
+    <div class="content-container" style="position: relative;">
+        <!-- Floating QR Code (shown when ?qr=1 in URL) -->
+        <div class="floating-qr" aria-hidden="true">
+            <img src="/assets/images/hackercats.join.png" alt="Join Hackercats QR Code">
+            <div class="floating-qr-label">Scan to Join</div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column is-10-desktop is-12-tablet is-12-mobile">
+                <main id="main-content" role="main">
+                    <section class="section">
+                        <div class="content reading-optimized">
+                            <h1 class="title is-2">Welcome to Hackercats</h1>
+<p class="content"><div class="content-container" style="position: relative;">
+  <!-- Floating QR Code (shown when ?qr=1 in URL) -->
+  <div class="floating-qr" aria-hidden="true">
+    <img src="/assets/images/hackercats.survey.png" alt="Join Hackercats QR Code">
+    <div class="floating-qr-label">Scan to Join</div>
+  </div>
+</div></p>
+<p class="content">(or just fill it out)</p>
+<p class="content"><iframe style="background: white;" src="https://docs.google.com/forms/d/e/1FAIpQLSctEJxk7_1K_WZjM0bltzuq80Vga0aFS2sEbjhAysUEu6mYvQ/viewform?embedded=true" width="640" height="1429" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>hackercats.exe</strong> - compiled with <i class="fas fa-heart has-text-danger"></i><br>
+                <small>> system status: online </small>
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Mobile Terminal Button -->
+    <button id="mobile-terminal-btn" class="mobile-terminal-button" aria-label="Open terminal">
+        <i class="fas fa-terminal"></i>
+    </button>
+    
+    <!-- Command Line Interface -->
+    <div id="terminal" class="terminal-overlay">
+        <div class="terminal-content">
+            <div class="terminal-header">
+                <span class="terminal-title">hackercats@terminal:~$</span>
+                <button class="terminal-close" aria-label="Close terminal">×</button>
+            </div>
+            <div class="terminal-body">
+                <div id="terminal-output" class="terminal-output"></div>
+                <div class="terminal-input-line">
+                    <span class="terminal-prompt">hackercats@site:~$ </span>
+                    <input type="text" id="terminal-input" class="terminal-input" spellcheck="false" autocomplete="off" placeholder="Type 'help' for commands...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/mobile-nav.js"></script>
+    <script src="/assets/js/terminal-filesystem.js"></script>
+    <script src="/assets/js/terminal-commands.js"></script>
+    <script src="/assets/js/terminal-refactored.js"></script>
+    <script src="/assets/js/qr-display.js"></script>
+</body>
+</html>

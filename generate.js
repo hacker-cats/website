@@ -8,7 +8,7 @@ class StaticSiteGenerator {
         this.srcDir = path.join(__dirname, 'src');
         this.distDir = path.join(__dirname, 'dist');
         this.templatePath = path.join(__dirname, 'template.html');
-        this.sections = ['about', 'events', 'stats', 'join', 'qr'];
+        this.sections = ['about', 'events', 'stats', 'join', 'qr', 'survey'];
     }
 
     async generate() {
